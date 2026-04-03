@@ -15,7 +15,8 @@ wss.on('connection', (ws) => {
                     client.send(JSON.stringify({
                         store: data.store,
                         type: data.type,
-                        table_no: data.table_no
+                        table_no: data.table_no,
+                        data: data.data
                     }));
                 }
             });
