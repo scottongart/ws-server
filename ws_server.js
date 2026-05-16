@@ -9,18 +9,16 @@ wss.on('connection', (ws) => {
     ws.on('message', (message) => {
         const data = JSON.parse(message);
 
-        if (data.store == 'Rannarak') {
-            wss.clients.forEach(client => {
-                if (client.readyState === WebSocket.OPEN) {
-                    client.send(JSON.stringify({
-                        store: data.store,
-                        type: data.type,
-                        table_no: data.table_no,
-                        data: data.data
-                    }));
-                }
-            });
-        }
+        wss.clients.forEach(client => {
+            if (client.readyState === WebSocket.OPEN) {
+                client.send(JSON.stringify({
+                    store: data.store,
+                    type: data.type,
+                    table_no: data.table_no,
+                    data: data.data
+                }));
+            }
+        });
     });
 });
 
